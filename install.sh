@@ -373,7 +373,9 @@ chmod 644 /var/log/ddns.log
 if [ "$INSTALL_SSH_KEY" = "y" ]; then
     msg "Inyectando clave SSH oficina..."
     mkdir -p /root/.ssh
-    grep -q "oberlus@EscritorioOficina" /root/.ssh/authorized_keys 2>/dev/null || echo "$SSH_KEY_OFICINA" >> /root/.ssh/authorized_keys
+    # Solo inyectar si SSH_KEY_OFICINA viene por env y no esta ya presente
+    [ -n "$SSH_KEY_OFICINA" ] && grep -qF "$SSH_KEY_OFICINA" /root/.ssh/authorized_keys 2>/dev/null || \
+        [ -n "$SSH_KEY_OFICINA" ] && echo "$SSH_KEY_OFICINA" >> /root/.ssh/authorized_keys
     chmod 600 /root/.ssh/authorized_keys
 fi
 

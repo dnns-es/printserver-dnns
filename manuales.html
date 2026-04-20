@@ -107,7 +107,7 @@
         <h3>Desde red interna <span class="badge interno">INTERNO</span></h3>
         <p>Abre en el navegador:</p>
         <pre><code>http://&lt;IP-DEL-SERVER&gt;/</code></pre>
-        <p>Ejemplo: <code>http://192.168.10.171/</code></p>
+        <p>Ejemplo: <code>http://IP-DEL-SERVER/</code></p>
         <p>Aparecer&aacute; la pantalla de login con tema verde. Introduce las credenciales del admin que configuraste.</p>
 
         <h3>Desde internet <span class="badge externo">EXTERNO</span></h3>
@@ -140,7 +140,7 @@
         <ol>
             <li>Pesta&ntilde;a <strong>Impresoras</strong> &rarr; <strong>+ Agregar</strong></li>
             <li>Nombre: <code>EPSON Oficina</code></li>
-            <li>IP: <code>192.168.10.15</code></li>
+            <li>IP: <code>IP-DE-LA-IMPRESORA</code></li>
             <li>URI: dejar vac&iacute;o (auto IPP) o especificar <code>ipp://IP/ipp/print</code></li>
             <li>Ubicaci&oacute;n: <code>Oficina principal</code></li>
             <li>Clic en <strong>Guardar</strong></li>
@@ -157,7 +157,7 @@
         <h3>Windows 10/11</h3>
         <ol>
             <li>Copia la URL IPP del panel (pesta&ntilde;a <strong>Impresoras</strong>, columna "Conectar desde PC")</li>
-            <li>Ejemplo: <code>http://192.168.10.171:631/printers/Epson_WF2840</code></li>
+            <li>Ejemplo: <code>http://IP-DEL-SERVER:631/printers/Epson_WF2840</code></li>
             <li>Configuraci&oacute;n &rarr; <strong>Impresoras y esc&aacute;neres</strong> &rarr; <strong>Agregar impresora</strong></li>
             <li>Clic en "La impresora que quiero no aparece"</li>
             <li>Selecciona "Seleccionar una impresora compartida por nombre"</li>
@@ -177,7 +177,7 @@
 
         <h3>Linux</h3>
         <pre><code>lpadmin -p MiImpresora -E \
-    -v ipp://192.168.10.171:631/printers/Epson_WF2840 \
+    -v ipp://IP-DEL-SERVER:631/printers/Epson_WF2840 \
     -m everywhere</code></pre>
     </div>
 

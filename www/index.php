@@ -296,10 +296,10 @@ $isAdmin = isAdmin();
                     <div id="addPrinterForm" class="hidden" style="margin-bottom:16px;padding:14px;border:1px solid #e0e0e0;border-radius:8px;">
                         <div class="form-row">
                             <div class="form-group"><label>Nombre</label><input type="text" id="pName" placeholder="HP LaserJet Oficina"></div>
-                            <div class="form-group"><label>IP</label><input type="text" id="pIP" placeholder="192.168.10.50"></div>
+                            <div class="form-group"><label>IP</label><input type="text" id="pIP" placeholder="IP-IMPRESORA"></div>
                         </div>
                         <div class="form-row">
-                            <div class="form-group"><label>URI (auto si vacio)</label><input type="text" id="pURI" placeholder="ipp://192.168.10.50/ipp/print"></div>
+                            <div class="form-group"><label>URI (auto si vacio)</label><input type="text" id="pURI" placeholder="ipp://IP-IMPRESORA/ipp/print"></div>
                             <div class="form-group"><label>Ubicacion</label><input type="text" id="pLocation" placeholder="Oficina principal"></div>
                         </div>
                         <button class="btn btn-primary" onclick="addPrinter()">Guardar</button>
@@ -424,7 +424,7 @@ $isAdmin = isAdmin();
                 <div class="panel-header"><span class="panel-title">Buscar Impresoras en Red</span></div>
                 <div class="panel-body">
                     <div style="display:flex;gap:10px;margin-bottom:16px;">
-                        <input type="text" id="scanRange" value="192.168.10.0/24" style="padding:6px 10px;border-radius:6px;border:1px solid #ddd;width:200px;font-size:13px;">
+                        <input type="text" id="scanRange" value="RANGO-RED-LOCAL" style="padding:6px 10px;border-radius:6px;border:1px solid #ddd;width:200px;font-size:13px;">
                         <button class="btn btn-primary" id="scanBtn" onclick="scanNetwork()">Escanear</button>
                     </div>
                     <div id="scanStatus" class="hidden" style="margin-bottom:12px;color:#888;font-size:13px;"><span class="spinner"></span> Escaneando red...</div>
@@ -457,14 +457,14 @@ $isAdmin = isAdmin();
                         <div class="steps">
                             <div class="step"><div class="step-num">1</div><div class="step-text">Abre <strong>Preferencias del Sistema</strong> > <strong>Impresoras y Escaneres</strong></div></div>
                             <div class="step"><div class="step-num">2</div><div class="step-text">Clic en <strong>+</strong> y selecciona la pestana <strong>IP</strong></div></div>
-                            <div class="step"><div class="step-num">3</div><div class="step-text">Protocolo: <strong>IPP</strong>, Direccion: <code id="macAddr">192.168.10.171</code>, Cola: <code>printers/Epson_WF2840</code></div></div>
+                            <div class="step"><div class="step-num">3</div><div class="step-text">Protocolo: <strong>IPP</strong>, Direccion: <code id="macAddr">IP-DEL-SERVER</code>, Cola: <code>printers/Epson_WF2840</code></div></div>
                             <div class="step"><div class="step-num">4</div><div class="step-text">Selecciona driver <strong>Generic IPP Everywhere</strong></div></div>
                         </div>
                     </div>
                     <div id="os-linux" class="os-content hidden">
                         <div class="steps">
                             <div class="step"><div class="step-num">1</div><div class="step-text">Abre un terminal y ejecuta:</div></div>
-                            <div class="step"><div class="step-num">2</div><div class="step-text"><code id="linuxCmd">lpadmin -p Epson -E -v ipp://192.168.10.171:631/printers/Epson_WF2840 -m everywhere</code></div></div>
+                            <div class="step"><div class="step-num">2</div><div class="step-text"><code id="linuxCmd">lpadmin -p Epson -E -v ipp://IP-DEL-SERVER:631/printers/Epson_WF2840 -m everywhere</code></div></div>
                             <div class="step"><div class="step-num">3</div><div class="step-text">O abre <strong>http://localhost:631</strong> en el navegador y agrega impresora IPP</div></div>
                         </div>
                     </div>
