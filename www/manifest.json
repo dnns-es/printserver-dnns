@@ -1,0 +1,16 @@
+{
+  "name": "Print Server DNNS",
+  "short_name": "PrintServer",
+  "description": "Gestion de impresoras y colas DNNS",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f5f5f5",
+  "theme_color": "#69c350",
+  "orientation": "any",
+  "lang": "es",
+  "scope": "./",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,65 @@
+<?php
+/* config.php.example - Plantilla de configuracion
+ *
+ * Copia este archivo a config.php y rellena los valores reales:
+ *   cp config.php.example config.php
+ *
+ * El install.sh genera config.php automaticamente con los valores correctos.
+ */
+
+// ============================================================
+// BASE DE DATOS
+// ============================================================
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'printserver');
+define('DB_USER', 'printapp');
+define('DB_PASS', 'CAMBIAR_PASSWORD_BD');
+
+// ============================================================
+// APP
+// ============================================================
+define('APP_NAME', 'Print Server');
+
+// ============================================================
+// CUPS
+// ============================================================
+define('CUPS_HOST', 'localhost');
+define('CUPS_PORT', 631);
+
+// ============================================================
+// RED LOCAL
+// ============================================================
+define('NETWORK_RANGE', '192.168.1.0/24');           // Red donde estan las impresoras
+define('CUPS_LAN_HOST', '192.168.1.10');             // IP del propio servidor (para URLs IPP)
+
+// ============================================================
+// LICENCIAS (servidor central DNNS Passkey)
+// ============================================================
+define('PASSKEY_URL', 'https://passkey.dnns.es');
+
+// ============================================================
+// FUNCIONES (no modificar)
+// ============================================================
+function db() {
+    static $pdo = null;
+    if ($pdo === null) {
+        $pdo = new PDO(
+            'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
+            DB_USER, DB_PASS,
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
+    }
+    return $pdo;
+}
+
+function cupsExec($cmd) {
+    $output = [];
+    $ret = 0;
+    exec($cmd . ' 2>&1', $output, $ret);
+    return ['output' => implode("\n", $output), 'code' => $ret];
+}
+
+function logActivity($tipo, $mensaje) {
+    db()->prepare("INSERT INTO log_actividad (tipo, mensaje) VALUES (?, ?)")
+        ->execute([$tipo, $mensaje]);
+}

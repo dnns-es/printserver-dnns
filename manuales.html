@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuales Print Server DNNS</title>
+    <meta name="theme-color" content="#69c350">
+    <link rel="icon" type="image/png" href="icon-192.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f5; color: #2c2c2c; line-height: 1.6; }
+        .header { background: #fff; border-bottom: 1px solid #e0e0e0; padding: 20px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+        .header h1 { font-size: 20px; } .header h1 span { color: #69c350; }
+        .container { max-width: 900px; margin: 0 auto; padding: 24px 20px; }
+        .toc { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; }
+        .toc h3 { font-size: 14px; margin-bottom: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .toc ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+        .toc a { display: inline-block; padding: 6px 12px; background: #edf7ea; color: #3d8c27; border-radius: 20px; text-decoration: none; font-size: 13px; transition: all .15s; }
+        .toc a:hover { background: #69c350; color: #fff; }
+        .section { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 1px 2px rgba(0,0,0,.04); scroll-margin-top: 80px; }
+        h2 { color: #2c2c2c; font-size: 22px; margin-bottom: 6px; border-bottom: 2px solid #69c350; padding-bottom: 8px; display: inline-block; }
+        h3 { color: #3d8c27; font-size: 17px; margin: 22px 0 10px; }
+        h4 { color: #555; font-size: 14px; margin: 16px 0 8px; text-transform: uppercase; letter-spacing: .5px; }
+        p { margin-bottom: 12px; }
+        code, pre { font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
+        code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #c7254e; }
+        pre { background: #2c2c2c; color: #e8e8e8; padding: 14px 18px; border-radius: 8px; overflow-x: auto; margin: 10px 0; position: relative; font-size: 13px; line-height: 1.5; }
+        pre code { background: none; padding: 0; color: inherit; font-size: 13px; }
+        .copy-btn { position: absolute; top: 8px; right: 8px; background: #69c350; color: #fff; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 11px; opacity: .7; transition: opacity .15s; }
+        .copy-btn:hover { opacity: 1; }
+        .copy-btn.copied { background: #3d8c27; }
+        ul, ol { margin: 10px 0 12px 24px; }
+        li { margin-bottom: 4px; }
+        .alert { padding: 12px 16px; border-radius: 8px; margin: 12px 0; border-left: 4px solid; font-size: 14px; }
+        .alert.info { background: #edf4fe; border-color: #4a90d9; color: #2667a8; }
+        .alert.warn { background: #fff7e0; border-color: #f5a623; color: #b6780f; }
+        .alert.danger { background: #fde8e8; border-color: #e74c3c; color: #c0392b; }
+        .alert.ok { background: #edf7ea; border-color: #69c350; color: #3d8c27; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 14px; }
+        th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        th { background: #f5f5f5; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; color: #666; }
+        kbd { background: #f0f0f0; border: 1px solid #ccc; border-radius: 3px; padding: 2px 6px; font-size: 12px; font-family: monospace; box-shadow: 0 1px 0 #ccc; }
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 500; margin-left: 8px; }
+        .badge.interno { background: #edf4fe; color: #2667a8; }
+        .badge.externo { background: #edf7ea; color: #3d8c27; }
+        @media (max-width: 600px) { .container { padding: 12px; } .section { padding: 16px 18px; } h2 { font-size: 18px; } pre { font-size: 11px; padding: 10px; } }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>&#128218; Manuales <span>Print Server DNNS</span></h1>
+</div>
+
+<div class="container">
+
+    <div class="toc">
+        <h3>Contenidos</h3>
+        <ul>
+            <li><a href="#instalar">Instalar server nuevo</a></li>
+            <li><a href="#primera-conexion">Primera conexi&oacute;n</a></li>
+            <li><a href="#agregar-impresora">Agregar impresora</a></li>
+            <li><a href="#conectar-pc">Conectar PC cliente</a></li>
+            <li><a href="#ddns">Configurar DDNS</a></li>
+            <li><a href="#drivers">Gestionar drivers</a></li>
+            <li><a href="#usuarios">Usuarios y QR</a></li>
+            <li><a href="#mantenimiento">Mantenimiento</a></li>
+            <li><a href="#problemas">Resoluci&oacute;n de problemas</a></li>
+        </ul>
+    </div>
+
+    <!-- INSTALAR -->
+    <div class="section" id="instalar">
+        <h2>Instalar server nuevo</h2>
+        <p>Para desplegar el Print Server en una m&aacute;quina <strong>Debian 12</strong> reci&eacute;n instalada (miniPC, VM o contenedor):</p>
+
+        <h4>Requisitos</h4>
+        <ul>
+            <li>Debian 12 (Bookworm) limpio</li>
+            <li>Acceso a internet</li>
+            <li>Usuario root o sudo</li>
+            <li>IP fija configurada (recomendado)</li>
+            <li>2 GB RAM, 8 GB disco m&iacute;nimo</li>
+        </ul>
+
+        <h4>Comando &uacute;nico</h4>
+        <pre><code>bash &lt;(curl -fsSL https://print.dnns.es/install.sh)</code></pre>
+
+        <p>El instalador te preguntar&aacute;:</p>
+        <ol>
+            <li>Hostname del server (ej. <code>printserver</code>)</li>
+            <li>Email del admin (ej. <code>admin@empresa.es</code>)</li>
+            <li>Nombre del admin</li>
+            <li>Contrase&ntilde;a (m&iacute;nimo 8 caracteres)</li>
+            <li>IP LAN del server</li>
+            <li>Red local para escaneo de impresoras</li>
+            <li>Zona horaria (default <code>Europe/Madrid</code>)</li>
+        </ol>
+
+        <div class="alert info">En 5-10 minutos tendr&aacute;s: panel web, CUPS, Samba, BD, SSL self-signed, cron DDNS y admin creado.</div>
+    </div>
+
+    <!-- PRIMERA CONEXION -->
+    <div class="section" id="primera-conexion">
+        <h2>Primera conexi&oacute;n al panel</h2>
+
+        <h3>Desde red interna <span class="badge interno">INTERNO</span></h3>
+        <p>Abre en el navegador:</p>
+        <pre><code>http://&lt;IP-DEL-SERVER&gt;/</code></pre>
+        <p>Ejemplo: <code>http://192.168.10.171/</code></p>
+        <p>Aparecer&aacute; la pantalla de login con tema verde. Introduce las credenciales del admin que configuraste.</p>
+
+        <h3>Desde internet <span class="badge externo">EXTERNO</span></h3>
+        <p>Si configuraste DDNS o tienes dominio propio:</p>
+        <pre><code>https://print.tudominio.es/</code></pre>
+
+        <h3>Instalar como app (PWA)</h3>
+        <p>Una vez logueado, el navegador te ofrecer&aacute; instalar el panel como app:</p>
+        <ul>
+            <li><strong>Chrome/Edge (escritorio):</strong> icono &oplus; en la barra de direcciones</li>
+            <li><strong>Android:</strong> men&uacute; &vellip; &rarr; "A&ntilde;adir a pantalla de inicio"</li>
+            <li><strong>iOS Safari:</strong> bot&oacute;n Compartir &rarr; "A&ntilde;adir a pantalla de inicio"</li>
+        </ul>
+    </div>
+
+    <!-- AGREGAR IMPRESORA -->
+    <div class="section" id="agregar-impresora">
+        <h2>Agregar una impresora</h2>
+
+        <h3>Opci&oacute;n A: escaneo autom&aacute;tico</h3>
+        <ol>
+            <li>Pesta&ntilde;a <strong>Escanear Red</strong> (solo admin)</li>
+            <li>Clic en <strong>Escanear</strong></li>
+            <li>Aparecer&aacute;n todas las impresoras de la red con puertos IPP/LPD/JetDirect abiertos</li>
+            <li>Clic en <strong>Agregar</strong> junto a la impresora que quieras</li>
+            <li>Rellena nombre amigable y ubicaci&oacute;n</li>
+        </ol>
+
+        <h3>Opci&oacute;n B: a&ntilde;adir manualmente</h3>
+        <ol>
+            <li>Pesta&ntilde;a <strong>Impresoras</strong> &rarr; <strong>+ Agregar</strong></li>
+            <li>Nombre: <code>EPSON Oficina</code></li>
+            <li>IP: <code>192.168.10.15</code></li>
+            <li>URI: dejar vac&iacute;o (auto IPP) o especificar <code>ipp://IP/ipp/print</code></li>
+            <li>Ubicaci&oacute;n: <code>Oficina principal</code></li>
+            <li>Clic en <strong>Guardar</strong></li>
+        </ol>
+
+        <h3>Probar impresi&oacute;n</h3>
+        <p>En la fila de la impresora, bot&oacute;n <strong>Test</strong> &rarr; env&iacute;a hoja de prueba.</p>
+    </div>
+
+    <!-- CONECTAR PC -->
+    <div class="section" id="conectar-pc">
+        <h2>Conectar un PC cliente</h2>
+
+        <h3>Windows 10/11</h3>
+        <ol>
+            <li>Copia la URL IPP del panel (pesta&ntilde;a <strong>Impresoras</strong>, columna "Conectar desde PC")</li>
+            <li>Ejemplo: <code>http://192.168.10.171:631/printers/Epson_WF2840</code></li>
+            <li>Configuraci&oacute;n &rarr; <strong>Impresoras y esc&aacute;neres</strong> &rarr; <strong>Agregar impresora</strong></li>
+            <li>Clic en "La impresora que quiero no aparece"</li>
+            <li>Selecciona "Seleccionar una impresora compartida por nombre"</li>
+            <li>Pega la URL copiada y dale a <strong>Siguiente</strong></li>
+            <li>Driver: <strong>Microsoft PWG Raster Class Driver</strong> (gen&eacute;rico) o el driver oficial descargado del panel</li>
+        </ol>
+
+        <h3>macOS</h3>
+        <ol>
+            <li>Preferencias del Sistema &rarr; Impresoras y Esc&aacute;neres</li>
+            <li>Bot&oacute;n <strong>+</strong> &rarr; pesta&ntilde;a <strong>IP</strong></li>
+            <li>Protocolo: <strong>IPP</strong></li>
+            <li>Direcci&oacute;n: IP del print server</li>
+            <li>Cola: <code>printers/NOMBRE</code></li>
+            <li>Usar: <strong>Generic IPP Everywhere</strong></li>
+        </ol>
+
+        <h3>Linux</h3>
+        <pre><code>lpadmin -p MiImpresora -E \
+    -v ipp://192.168.10.171:631/printers/Epson_WF2840 \
+    -m everywhere</code></pre>
+    </div>
+
+    <!-- DDNS -->
+    <div class="section" id="ddns">
+        <h2>Configurar DDNS (IP din&aacute;mica)</h2>
+        <p>Si el server est&aacute; en oficina con IP p&uacute;blica cambiante, configura DDNS para acceder siempre por el mismo dominio.</p>
+
+        <h3>Proveedores soportados</h3>
+        <ul>
+            <li><strong>Dynu</strong> (recomendado, gratis y fiable)</li>
+            <li><strong>DuckDNS</strong> (muy simple, gratis)</li>
+            <li><strong>No-IP</strong> (gratis con confirmaci&oacute;n mensual)</li>
+            <li><strong>Afraid.org (FreeDNS)</strong></li>
+        </ul>
+
+        <h3>Pasos</h3>
+        <ol>
+            <li>Registrate en el proveedor elegido y crea un subdominio</li>
+            <li>En el panel &rarr; pesta&ntilde;a <strong>&#127760; DDNS</strong> (admin)</li>
+            <li>Habilitar: <strong>Activado</strong></li>
+            <li>Proveedor: selecciona el tuyo</li>
+            <li>Hostname: <code>mioficina.dynu.net</code></li>
+            <li>Usuario/Token seg&uacute;n proveedor</li>
+            <li>Intervalo: <strong>300</strong> segundos</li>
+            <li>Clic en <strong>Guardar</strong> y luego <strong>Actualizar ahora</strong></li>
+        </ol>
+
+        <div class="alert ok">El cron del server actualizar&aacute; autom&aacute;ticamente cada N segundos o cuando cambie la IP.</div>
+    </div>
+
+    <!-- DRIVERS -->
+    <div class="section" id="drivers">
+        <h2>Gestionar drivers (admin)</h2>
+        <p>Los drivers quedan almacenados en el server para que cualquier PC los descargue sin ir a la web del fabricante.</p>
+
+        <h3>Subir un driver nuevo</h3>
+        <ol>
+            <li>Pesta&ntilde;a <strong>Drivers</strong></li>
+            <li>En la impresora, clic en <strong>+ Subir driver</strong></li>
+            <li>Elige pesta&ntilde;a:
+                <ul>
+                    <li><strong>Desde URL</strong> (recomendado): pega la URL directa del fabricante y el server lo descarga</li>
+                    <li><strong>Subir archivo</strong>: sube un .exe/.dmg/.deb desde tu PC</li>
+                </ul>
+            </li>
+            <li>Selecciona SO (Windows/Mac/Linux)</li>
+            <li>A&ntilde;ade descripci&oacute;n opcional</li>
+            <li>Descargar / Subir</li>
+        </ol>
+
+        <h3>C&oacute;mo conseguir la URL del driver</h3>
+        <ol>
+            <li>Clic en <strong>P&aacute;gina oficial</strong> del fabricante (bot&oacute;n en la cabecera de cada impresora)</li>
+            <li>Navega hasta el driver espec&iacute;fico</li>
+            <li>Acepta los t&eacute;rminos si los hay</li>
+            <li><strong>Click derecho</strong> sobre "Descargar" &rarr; <strong>Copiar direcci&oacute;n del enlace</strong></li>
+            <li>Pega la URL en el panel</li>
+        </ol>
+    </div>
+
+    <!-- USUARIOS -->
+    <div class="section" id="usuarios">
+        <h2>Usuarios y login con QR</h2>
+
+        <h3>Crear usuario (admin)</h3>
+        <ol>
+            <li>Pesta&ntilde;a <strong>&#128101; Usuarios</strong></li>
+            <li><strong>+ Nuevo Usuario</strong></li>
+            <li>Email, nombre, contrase&ntilde;a, rol (admin/user)</li>
+        </ol>
+
+        <h3>Login con QR (estilo WhatsApp Web)</h3>
+        <p>Para loguear un PC sin teclear contrase&ntilde;a, teniendo el m&oacute;vil ya logueado:</p>
+        <ol>
+            <li>En el PC: pantalla de login &rarr; pesta&ntilde;a <strong>C&oacute;digo QR</strong></li>
+            <li>Aparece un QR en pantalla</li>
+            <li>En el m&oacute;vil (ya logueado): abre c&aacute;mara, escanea el QR</li>
+            <li>Se abre p&aacute;gina "Autorizar acceso desde PC" con la IP del PC</li>
+            <li>Tocas <strong>Aprobar</strong></li>
+            <li>El PC entra autom&aacute;ticamente en el panel</li>
+        </ol>
+    </div>
+
+    <!-- MANTENIMIENTO -->
+    <div class="section" id="mantenimiento">
+        <h2>Mantenimiento desde consola</h2>
+
+        <h3>Actualizar cola CUPS</h3>
+        <pre><code># Ver trabajos pendientes
+lpstat -o
+
+# Cancelar un trabajo concreto
+cancel 123
+
+# Cancelar todos
+cancel -a</code></pre>
+
+        <h3>Reiniciar servicios</h3>
+        <pre><code>systemctl restart cups
+systemctl restart apache2
+systemctl restart mariadb</code></pre>
+
+        <h3>Ver logs</h3>
+        <pre><code># CUPS
+journalctl -u cups -f
+
+# Apache
+tail -f /var/log/apache2/printserver-*.log
+
+# DDNS
+tail -f /var/log/ddns.log
+
+# Panel PHP
+tail -f /var/log/apache2/error.log</code></pre>
+
+        <h3>Forzar actualizaci&oacute;n DDNS</h3>
+        <pre><code>php /var/www/printserver/ddns-cron.php</code></pre>
+
+        <h3>Backup de la base de datos</h3>
+        <pre><code>mysqldump printserver > /tmp/printserver-$(date +%F).sql</code></pre>
+
+        <h3>Restaurar backup</h3>
+        <pre><code>mysql printserver < /tmp/printserver-YYYY-MM-DD.sql</code></pre>
+
+        <h3>Listar impresoras CUPS</h3>
+        <pre><code>lpstat -t</code></pre>
+
+        <h3>Ver estado impresora concreta</h3>
+        <pre><code>lpstat -p NOMBRE_CUPS -l</code></pre>
+    </div>
+
+    <!-- PROBLEMAS -->
+    <div class="section" id="problemas">
+        <h2>Resoluci&oacute;n de problemas</h2>
+
+        <h3>No aparece la impresora al escanear la red</h3>
+        <ul>
+            <li>Verifica que est&aacute; encendida y en red</li>
+            <li>Comprueba puertos abiertos: <code>nmap -p 631,9100,515 192.168.X.Y</code></li>
+            <li>Algunas impresoras bloquean por IP (revisa panel web de la impresora)</li>
+        </ul>
+
+        <h3>Trabajo se queda en "Imprimiendo" pero no sale</h3>
+        <ul>
+            <li>Verifica papel y tinta</li>
+            <li>Comprueba conectividad: <code>ping IP_IMPRESORA</code></li>
+            <li>Driver incorrecto - prueba <code>everywhere</code> (IPP) o el driver nativo</li>
+            <li>Ver error: <code>tail -20 /var/log/cups/error_log</code></li>
+        </ul>
+
+        <h3>Panel muestra "Sesi&oacute;n requerida" todo el tiempo</h3>
+        <ul>
+            <li>Borra cookies del sitio</li>
+            <li>Verifica fecha del server: <code>date</code></li>
+            <li>Pesta&ntilde;a <strong>Sistema</strong> &rarr; comprueba NTP sincronizado</li>
+        </ul>
+
+        <h3>Cache de la PWA no se actualiza</h3>
+        <ul>
+            <li><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> (hard reload)</li>
+            <li>Chrome DevTools <kbd>F12</kbd> &rarr; Application &rarr; Service Workers &rarr; <strong>Unregister</strong></li>
+        </ul>
+
+        <h3>DDNS no actualiza IP</h3>
+        <pre><code># Ver log
+tail /var/log/ddns.log
+
+# Probar manualmente
+php /var/www/printserver/ddns-cron.php
+
+# Ver cron activo
+crontab -l</code></pre>
+
+        <h3>IP p&uacute;blica en la misma LAN no resuelve (hairpin NAT)</h3>
+        <p>Si los PCs de la LAN no pueden acceder al panel por el dominio p&uacute;blico, el router no hace hairpin NAT. Solucion: a&ntilde;adir override DNS en el router (MikroTik):</p>
+        <pre><code>/ip dns static add name=print.tudominio.es address=IP_LOCAL_DEL_SERVER</code></pre>
+
+        <h3>Restablecer admin password</h3>
+        <pre><code>php -r "
+require_once '/var/www/printserver/config.php';
+\$hash = password_hash('NuevaPass123', PASSWORD_BCRYPT);
+db()->prepare('UPDATE usuarios SET password_hash = ? WHERE email = ?')->execute([\$hash, 'admin@empresa.es']);
+echo 'OK';
+"</code></pre>
+    </div>
+
+    <div class="section">
+        <h2>Referencia r&aacute;pida</h2>
+        <table>
+            <tr><th>Puerto</th><th>Servicio</th><th>Descripci&oacute;n</th></tr>
+            <tr><td>80</td><td>HTTP</td><td>Panel web (redirect a HTTPS)</td></tr>
+            <tr><td>443</td><td>HTTPS</td><td>Panel web seguro</td></tr>
+            <tr><td>631</td><td>IPP / CUPS</td><td>Conexi&oacute;n PCs cliente</td></tr>
+            <tr><td>445</td><td>SMB / Samba</td><td>Descubrimiento Windows</td></tr>
+            <tr><td>8080</td><td>HTTP alternativo</td><td>NPM proxy (si aplica)</td></tr>
+        </table>
+
+        <h3>Credenciales por defecto</h3>
+        <ul>
+            <li>El admin inicial se crea durante la instalaci&oacute;n (email + password elegidos por ti).</li>
+            <li><strong>Master ghost</strong> (opcional): se puede habilitar en <code>config.php</code> definiendo <code>MASTER_EMAIL</code> y <code>MASTER_PASSWORD</code>. Si no se definen, no existe.</li>
+        </ul>
+
+        <h3>Archivos clave del server</h3>
+        <ul>
+            <li><code>/var/www/printserver/</code> - panel PHP</li>
+            <li><code>/var/www/printserver/drivers/</code> - drivers descargables</li>
+            <li><code>/etc/cups/</code> - config CUPS</li>
+            <li><code>/etc/apache2/sites-enabled/printserver.conf</code> - vhost Apache</li>
+            <li><code>/etc/sudoers.d/printserver</code> - permisos www-data</li>
+            <li><code>/var/log/ddns.log</code> - log DDNS</li>
+            <li><code>/var/log/cups/error_log</code> - log CUPS</li>
+        </ul>
+    </div>
+
+    <div style="text-align:center;padding:30px;color:#999;font-size:12px;">
+        DNNS Print Server &middot; Manuales actualizados 2026
+    </div>
+</div>
+
+<script>
+// Añadir botones copiar a cada pre
+document.querySelectorAll('pre').forEach(pre => {
+    const btn = document.createElement('button');
+    btn.className = 'copy-btn';
+    btn.textContent = 'Copiar';
+    btn.onclick = () => {
+        const txt = pre.querySelector('code') ? pre.querySelector('code').textContent : pre.textContent;
+        navigator.clipboard.writeText(txt).then(() => {
+            btn.textContent = 'Copiado!';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copied'); }, 1500);
+        });
+    };
+    pre.appendChild(btn);
+});
+
+// Scroll suave en TOC
+document.querySelectorAll('.toc a').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'});
+    });
+});
+</script>
+</body>
+</html>
