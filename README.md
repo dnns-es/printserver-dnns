@@ -16,8 +16,15 @@ Este proyecto es **100% gratis**. No hay versión de pago, no hay suscripciones,
 En un servidor Debian 12 limpio (como root o con `sudo`):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/dnns-es/printserver-dnns/main/install.sh | bash
+bash <(curl -fsSL https://raw.githubusercontent.com/dnns-es/printserver-dnns/main/install.sh)
 ```
+
+> ⚠️ Necesario usar `bash <(...)` (no `| bash`) porque el instalador es interactivo (te pregunta email, password, red, etc.). Con `| bash` el stdin del usuario queda bloqueado.
+
+> Si tu Debian no trae `curl` (instalación mínima):
+> ```bash
+> apt update && apt install -y curl
+> ```
 
 El instalador:
 - Detecta la red local automáticamente
