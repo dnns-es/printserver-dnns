@@ -404,7 +404,15 @@ echo ""
 WANT_RMM=$(ask "Instalar agente DNNS RMM?" "N")
 if [[ "$WANT_RMM" =~ ^[YySs]$ ]]; then
   msg "Descargando e instalando agente DNNS RMM..."
-  if curl -fsSL https://raw.githubusercontent.com/dnns-es/dnns-rmm-agent/main/install.sh | bash; then
+  # Pasar metadata del Print Server al agente para registrar info completa.
+  # Usamos bash <(...) para que el agente pueda preguntar interactivo si falta algo
+  # (el modo pipe | bash bloquea stdin y el agente no podria preguntar).
+  if PASSKEY_HOST=rmm.dnns.es \
+     RMM_HOST=rmm.dnns.es \
+     PRODUCTO=printserver \
+     ADMIN_EMAIL="$ADMIN_EMAIL" \
+     ADMIN_NAME="$ADMIN_NAME" \
+     bash <(curl -fsSL https://raw.githubusercontent.com/dnns-es/dnns-rmm-agent/main/install.sh); then
     msg "  [OK] Agente RMM instalado"
   else
     warn "  [!] El agente RMM no se pudo instalar (continuamos sin el)"
