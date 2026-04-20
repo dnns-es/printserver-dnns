@@ -132,7 +132,7 @@ El panel admin muestra el plan actual del servidor:
 | Pro | 10 | 20 |
 | Enterprise | sin límite | sin límite |
 
-**Es solo un mecanismo técnico de límites**, no hay coste asociado. Si quieres más capacidad, contacta con `hola@dnns.es` y te enviaremos un código de upgrade gratuito.
+**Es solo un mecanismo técnico de límites**, no hay coste asociado. Si quieres más capacidad, contacta con `info@dnns.es` y te enviaremos un código de upgrade gratuito.
 
 ---
 
@@ -179,4 +179,4 @@ Releases sellados en la blockchain de Bitcoin con [Copyright DNNS](https://copyr
 
 - Manual de usuario: `manuales.html` incluido en el repo
 - Issues / preguntas: usar el sistema de Issues de GitHub
-- Email: `hola@dnns.es`
+- Email: `info@dnns.es`
